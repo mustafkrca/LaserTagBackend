@@ -1,11 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Numerics;
 
-namespace BackendSonProje.Models
+namespace BackendSonProje.Models.Entites
 {
     public class User
     {
-        
+
         public int? Id { get; set; }
         public string? Name { get; set; }
         public string? Surname { get; set; }
@@ -14,7 +14,6 @@ namespace BackendSonProje.Models
         public string? Password { get; set; }
         public long? PhoneNumber { get; set; }
         public ICollection<Reservation>? Reservations { get; set; }
-
 
     }
 }

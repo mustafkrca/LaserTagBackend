@@ -6,7 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BackendSonProje.Models;
-using backendSon.Models;
+using BackendSonProje.Models.Entites;
+using BackendSonProje.Models.ViewModels;
 
 namespace BackendSonProje.Controllers
 {
@@ -105,7 +106,7 @@ namespace BackendSonProje.Controllers
 
         [Route("register")]
         [HttpPost]
-        public async Task<ActionResult<User>> RegisterUser(User user)
+        public async Task<ActionResult> RegisterUser(User user)
         {
             User? kontUser = await _context.Users.FirstOrDefaultAsync(x => x.Email == user.Email);
             if (kontUser == null)
@@ -125,24 +126,23 @@ namespace BackendSonProje.Controllers
 
         [Route("loginuser")]
         [HttpPost()]
-        public async Task<ActionResult<User>> LoginUser(User user)
+        public async Task<ActionResult> LoginUser(UserLoginVM user)
         {
             User? kontUser = await _context.Users.FirstOrDefaultAsync(x => x.Email == user.Email && x.Password == user.Password);
             if (kontUser == null)
             {
-                throw new Exception("giriş yapılamadı şifre hatalı");
+                throw new Exception("Şifre veya Email Hatalı");
             }
             else
             {
-                return Ok("giriş yapıldı");
+                return Ok("Giriş Yapıldı");
             }
         }
         [Route("reservation")]
         [HttpPost]
 
-        public void reservation(ResData res)
+        public void reservation(ReservationDataVM res)
         {
-
 
             var userId = _context.Users.FirstOrDefault(u => u.PhoneNumber == res.PhoneNumber);
 

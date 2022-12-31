@@ -1,8 +1,7 @@
-﻿using BackendSonProje.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Security.Principal;
 
-namespace backendSon.Models
+namespace BackendSonProje.Models.Entites
 {
     public class UserDbContext : DbContext
     {

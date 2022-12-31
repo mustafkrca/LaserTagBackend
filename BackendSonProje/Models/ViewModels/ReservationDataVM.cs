@@ -1,6 +1,6 @@
-﻿namespace BackendSonProje.Models
+﻿namespace BackendSonProje.Models.ViewModels
 {
-    public class ResData
+    public class ReservationDataVM
     {
         public long? PhoneNumber { get; set; }
         public int Day { get; set; }

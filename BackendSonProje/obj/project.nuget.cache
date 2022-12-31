@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "jpxGeysfl7H0+ZYPd9eaPn8lVJ3RL/wtOAiXuuPMCF4kgaYiBrgtEAqfwOJqpqIbI3sM7G0ZjkssQ9jB0EtZ9A==",
+  "dgSpecHash": "hCefBQvORs6rT/XVchelkaAE8EM+WOAHl5T6OyMX1G1TzUFZldqqKnK5nZ45ftgK3KtrZPFrZxV2gVjiF9lHTw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\musta\\Desktop\\Dosyalar\\VSC\\reactAspNet\\BackendSonProjeV2\\BackendSonProje\\BackendSonProje.csproj",
+  "projectFilePath": "C:\\Users\\musta\\Documents\\GitHub\\projeBackend\\BackendSonProje\\BackendSonProje.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\musta\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\musta\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

@@ -10729,11 +10729,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\musta\\Desktop\\Dosyalar\\VSC\\reactAspNet\\BackendSonProjeV2\\BackendSonProje\\BackendSonProje.csproj",
+      "projectUniqueName": "C:\\Users\\musta\\Documents\\GitHub\\projeBackend\\BackendSonProje\\BackendSonProje.csproj",
       "projectName": "BackendSonProje",
-      "projectPath": "C:\\Users\\musta\\Desktop\\Dosyalar\\VSC\\reactAspNet\\BackendSonProjeV2\\BackendSonProje\\BackendSonProje.csproj",
+      "projectPath": "C:\\Users\\musta\\Documents\\GitHub\\projeBackend\\BackendSonProje\\BackendSonProje.csproj",
       "packagesPath": "C:\\Users\\musta\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\musta\\Desktop\\Dosyalar\\VSC\\reactAspNet\\BackendSonProjeV2\\BackendSonProje\\obj\\",
+      "outputPath": "C:\\Users\\musta\\Documents\\GitHub\\projeBackend\\BackendSonProje\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

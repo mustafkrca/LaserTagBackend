@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace BackendSonProje.Models
+namespace BackendSonProje.Models.Entites
 {
     public class Reservation
     {
