@@ -155,42 +155,32 @@ namespace BackendSonProje.Controllers
         }
         [Route("reservation")]
         [HttpPost]
-
         public void reservation(ReservationDataVM res)
         {
+            string serviceName = "";
+
             // Telefon numarası üzerinden User seçimi
             var userId = _context.Users.FirstOrDefault(u => u.PhoneNumber == res.PhoneNumber);
 
             // Yönetilebilirlik arttırmak amacıyla sevice nin başlangıç ve bitiş id sini otomatik bulma
             List<Services> services = _context.Services.ToList();
+            switch (res.Service)
+            {
+                case 1: serviceName = "PC"; break;
+                case 2: serviceName = "PS"; break;
+                case 3: serviceName = "LT" ; break;
+            }
 
-            var servicesPc = services.Where(u => u.ServiceName.Contains("PC")).OrderBy(p => p.ServicesId);
-            var serviceFirstPc = servicesPc.First().ServicesId;
-            var serviceLastPc = servicesPc.Last().ServicesId;
-
-            var servicesPs = services.Where(u => u.ServiceName.Contains("PS")).OrderBy(p => p.ServicesId);
-            var serviceFirstPs = servicesPs.First().ServicesId;
-            var serviceLastPs = servicesPs.Last().ServicesId;
-
-            var servicesLt = services.Where(u => u.ServiceName.Contains("LT")).OrderBy(p => p.ServicesId);
-            var serviceFirstLt = servicesLt.First().ServicesId;
-            var serviceLastLt = servicesLt.Last().ServicesId;
-
-
-
+            var service = services.Where(u => u.ServiceName.Contains(serviceName)).OrderBy(p => p.ServicesId);
+            var serviceFirst = service.First().ServicesId;
+            var serviceLast = service.Last().ServicesId;
 
 
             // PC-PS-LT eğer doluysa sonraki numaralı servise e geçen algoritma
             while (true)
             {
-                int lastService =0;
-                switch (res.Service)
-                {
-                    case 1: lastService = Convert.ToInt32(serviceLastPc); break;
-                    case 2: res.Service = Convert.ToInt32(serviceFirstPs); lastService = Convert.ToInt32(serviceLastPs); break;
-                    case 3: res.Service = Convert.ToInt32(serviceFirstLt); lastService = Convert.ToInt32(serviceLastLt); break;
-                }
-                var serviceId = _context.Services.FirstOrDefault(u => u.ServicesId == res.Service);
+                
+                var serviceId = _context.Services.FirstOrDefault(u => u.ServicesId == serviceFirst);
 
                 if (null == _context.Reservations.FirstOrDefault(u => u.Service == serviceId && u.Clock == res.Clock &&  u.Day == res.Day))
                 {
@@ -207,8 +197,8 @@ namespace BackendSonProje.Controllers
                 }
                 else
                 {
-                    res.Service += 1;
-                    if (res.Service == lastService)
+                    serviceFirst += 1;
+                    if (serviceFirst > serviceLast)
                     {
                         break;
                     }
@@ -226,11 +216,13 @@ namespace BackendSonProje.Controllers
             int clock = 18;
             int service = 0;
             int serviceSon = 0;
-            int x = 0;
+            int serviceCount = 0;
             List<ResList> resList = new();
 
             // Yönetilebilirlik arttırmak amacıyla sevice nin başlangıç ve bitiş id sini otomatik bulma
             List<Services> services = _context.Services.ToList();
+
+
             var servicesPc = services.Where(u => u.ServiceName.Contains("PC")).OrderBy(p => p.ServicesId);
             var serviceFirstPc = servicesPc.First().ServicesId;
             var serviceLastPc = servicesPc.Last().ServicesId;
@@ -258,12 +250,12 @@ namespace BackendSonProje.Controllers
                         
                         switch (s)
                         {
-                            case 1:  service = Convert.ToInt32(serviceFirstPc);  serviceSon = Convert.ToInt32(serviceLastPc); x = Convert.ToInt32(serviceCountPc); break;
-                            case 2:  service = Convert.ToInt32(serviceFirstPs); serviceSon = Convert.ToInt32(serviceLastPs); x = Convert.ToInt32(serviceCountPs); break;
-                            case 3:  service = Convert.ToInt32(serviceFirstLt); serviceSon = Convert.ToInt32(serviceLastLt); x = Convert.ToInt32(serviceCountLt); break;
+                            case 1:  service = Convert.ToInt32(serviceFirstPc);  serviceSon = Convert.ToInt32(serviceLastPc); serviceCount = Convert.ToInt32(serviceCountPc); break;
+                            case 2:  service = Convert.ToInt32(serviceFirstPs); serviceSon = Convert.ToInt32(serviceLastPs); serviceCount = Convert.ToInt32(serviceCountPs); break;
+                            case 3:  service = Convert.ToInt32(serviceFirstLt); serviceSon = Convert.ToInt32(serviceLastLt); serviceCount = Convert.ToInt32(serviceCountLt); break;
                         }
                         var count = res.Where(c => c.Service.ServicesId >= service && c.Service.ServicesId <= serviceSon).Count(u => u.Day == i && u.Clock == j);
-                        if (count == x)
+                        if (count == serviceCount)
                         {
                             ResList res1 = new ResList
                             {

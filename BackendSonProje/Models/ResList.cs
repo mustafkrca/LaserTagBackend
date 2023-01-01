@@ -6,7 +6,6 @@ namespace BackendSonProje.Models
     {
         public int service { get; set; }
         public int day { get; set; }
-
         public int clock { get; set; }
 
     }
